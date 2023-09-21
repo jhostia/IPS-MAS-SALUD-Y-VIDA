@@ -1,0 +1,2 @@
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache

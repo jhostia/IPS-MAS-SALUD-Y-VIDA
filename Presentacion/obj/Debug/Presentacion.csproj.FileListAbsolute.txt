@@ -1,0 +1,14 @@
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\obj\Debug\Presentacion.csproj.AssemblyReference.cache
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\obj\Debug\Presentacion.csproj.CoreCompileInputs.cache
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Presentacion.exe.config
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Presentacion.exe
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Presentacion.pdb
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Entidades.dll
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Logica.dll
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Datos.dll
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Entidades.pdb
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Logica.pdb
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\bin\Debug\Datos.pdb
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\obj\Debug\Presentacion.exe
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Presentacion\obj\Debug\Presentacion.pdb

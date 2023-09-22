@@ -1,0 +1,11 @@
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\obj\Debug\Logica.csproj.AssemblyReference.cache
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\bin\Debug\Logica.dll
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\bin\Debug\Logica.pdb
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\bin\Debug\Datos.dll
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\bin\Debug\Entidades.dll
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\bin\Debug\Datos.pdb
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\bin\Debug\Entidades.pdb
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\obj\Debug\Logica.dll
+C:\Proyectos-git\Taller-JK-IPS\IPS-MAS-SALUD-Y-VIDA\Logica\obj\Debug\Logica.pdb

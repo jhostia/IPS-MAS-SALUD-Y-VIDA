@@ -8,15 +8,36 @@ namespace Entidades
 {
     public class Cuota
     {
-        public long numero { get; set; }
-        public long idPaciente { get; set; }
-        public string tipo { get; set; }    
-        public double salario { get; set; }
-        public double valorServicio { get; set; }
 
-        public void tipoAfiliacion (string tipo)
+        public Cuota()
         {
-            this.tipo = tipo;
         }
+
+        public Cuota(long numero, long idPaciente, string tipo, double salario, double valorServicio)
+        {
+            Numero = numero;
+            IdPaciente = idPaciente;
+            Tipo = tipo;
+            Salario = salario;
+            ValorServicio = valorServicio;
+        }
+
+        public void tipoAfiliacion(string tipo)
+        {
+            Tipo = tipo;
+        }
+
+
+
+        public override string ToString()
+        {
+            return $"{Numero},{IdPaciente},{Tipo},{Salario},{ValorServicio}";
+        }
+
+        public long Numero { get; set; }
+        public long IdPaciente { get; set; }
+        public string Tipo { get; set; }    
+        public double Salario { get; set; }
+        public double ValorServicio { get; set; }
     }
 }

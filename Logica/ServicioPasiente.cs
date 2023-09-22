@@ -10,9 +10,14 @@ namespace Logica
 {
     public class ServicioPasiente
     {
+        //private readonly DatosPasiente datosPasiente;
         DatosPasiente datosPasiente = null;
         private List<Cuota> cuotaList = null;
-
+        public ServicioPasiente()
+        {
+            datosPasiente = new DatosPasiente();
+            cuotaList = datosPasiente.ConsultarTodos();
+        }
         public String Guardar(Cuota cuota)
         { 
             if (cuota == null)
@@ -22,28 +27,28 @@ namespace Logica
             var msg = (datosPasiente.Guardar(cuota));
             return msg;
         }
-        public ConsultaPersonaResponse ConsultarTodos()
-        {
+        //public ConsultaPersonaResponse ConsultarTodos()
+        //{
 
-            try
-            {
-                List<Cuota> cuota = datosPasiente.ConsultarTodos();
-                if (cuota != null)
-                {
-                    return new ConsultaPersonaResponse(cuota);
-                }
-                else
-                {
-                    return new ConsultaPersonaResponse("La Persona buscada no se encuentra Registrada");
-                }
+        //    try
+        //    {
+        //        List<Cuota> cuota = datosPasiente.ConsultarTodos();
+        //        if (cuota != null)
+        //        {
+        //            return new ConsultaPersonaResponse(cuota);
+        //        }
+        //        else
+        //        {
+        //            return new ConsultaPersonaResponse("La Persona buscada no se encuentra Registrada");
+        //        }
 
-            }
-            catch (Exception e)
-            {
+        //    }
+        //    catch (Exception e)
+        //    {
 
-                return new ConsultaPersonaResponse("Error de Aplicacion: " + e.Message);
-            }
-        }
+        //        return new ConsultaPersonaResponse("Error de Aplicacion: " + e.Message);
+        //    }
+        //}
         public class ConsultaPersonaResponse
         {
             public List<Cuota> Cuotas { get; set; }
@@ -62,5 +67,9 @@ namespace Logica
                 Encontrado = false;
             }
         }
+        //public List<Cuota> ConsultarTodos()
+        //{
+        //    return cuotaList;//retorna la lista 
+        //}
     }
 }

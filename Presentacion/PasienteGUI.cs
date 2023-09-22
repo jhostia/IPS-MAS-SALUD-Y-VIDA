@@ -34,7 +34,7 @@ namespace Presentacion
                         AgregarPasiente();
                         break;
                     case 2:
-                        //MostrarPasiente();
+                        MostrarPasiente();
                         break;
                     case 3:
                         break;
@@ -56,13 +56,34 @@ namespace Presentacion
             string tipo = Console.ReadLine();
             Console.WriteLine("Digite el salario del pasiente");
             double salario = double.Parse(Console.ReadLine());
-            Console.WriteLine("Digite el sexo de la persona");
+            Console.WriteLine("Digite el salario de la persona");
             double valorServicio = double.Parse(Console.ReadLine());
 
             Cuota cuota = new Cuota(numero, idPaciente, tipo, salario, valorServicio);
             Console.WriteLine(servicioPasiente.Guardar(cuota));
             Console.ReadKey();
         }
+        private void MostrarPasiente()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(15, 2); Console.Write("Listado General de los pasientes");
+            Console.SetCursorPosition(10, 4); Console.Write("Numero de liquidacion:");
+            Console.SetCursorPosition(28, 4); Console.Write("Identificacion del paciente:");
+            Console.SetCursorPosition(34, 4); Console.Write("Tipo de afilacion");
+            Console.SetCursorPosition(40, 4); Console.Write("Salario devengado por el paciente:");
+            Console.SetCursorPosition(46, 4); Console.Write("Valor del servicio de hospitalizacion:");
+            int posicion = 2;
+            foreach (var item in servicioPasiente.ConsultarTodos())
+            {
 
+                Console.SetCursorPosition(15, 4 + posicion); Console.Write(item.Numero);
+                Console.SetCursorPosition(29, 4 + posicion); Console.Write(item.IdPaciente);
+                Console.SetCursorPosition(34, 4 + posicion); Console.Write(item.Tipo);
+                Console.SetCursorPosition(42, 4 + posicion); Console.Write(item.Salario);
+                Console.SetCursorPosition(48, 4 + posicion); Console.Write(item.ValorServicio);
+                posicion++;
+            }
+            Console.ReadKey();
+        }
     }
 }

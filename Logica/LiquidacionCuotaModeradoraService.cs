@@ -11,7 +11,7 @@ namespace Logica
     public class LiquidacionCuotaModeradoraService
     {
         private LiquidacionCuotaModeradoraRepository repository;
-        private decimal SalarioMinimo = 877803;
+        private decimal SalarioMinimo = 1300606;
 
         public LiquidacionCuotaModeradoraService(LiquidacionCuotaModeradoraRepository repo)
         {

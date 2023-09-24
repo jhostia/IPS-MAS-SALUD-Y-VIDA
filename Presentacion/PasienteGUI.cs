@@ -73,7 +73,7 @@ namespace Presentacion
             Console.WriteLine("Digite el  valor del servicio de hospitalización");
             double valorServicio = double.Parse(Console.ReadLine());
 
-            Cuota cuota = new Cuota(numero, idPaciente, nombre, tipo, salario, valorServicio);
+            LiquidacionCuotaModeradora cuota = new LiquidacionCuotaModeradora(numero, idPaciente, nombre, tipo, salario, valorServicio);
             Console.WriteLine(servicioPaciente.Guardar(cuota));
             Console.ReadKey();
         }

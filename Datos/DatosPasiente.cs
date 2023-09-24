@@ -11,7 +11,7 @@ namespace Datos
     public class DatosPasiente
     {
         string fileName = "PasienteInfo.txt";
-        public string Guardar(Cuota cuota)
+        public string Guardar(LiquidacionCuotaModeradora cuota)
         {
             var escritor = new StreamWriter(fileName, true);
             escritor.WriteLine(cuota.ToString()); 
@@ -20,9 +20,9 @@ namespace Datos
                 $"guardado correctamente";
         }
 
-        public List<Cuota> MostrarTodos()
+        public List<LiquidacionCuotaModeradora> MostrarTodos()
         {
-            List<Cuota> listaCuotas = new List<Cuota>();
+            List<LiquidacionCuotaModeradora> listaCuotas = new List<LiquidacionCuotaModeradora>();
             try
             {
                 StreamReader lector = new StreamReader(fileName);
@@ -39,9 +39,9 @@ namespace Datos
             }
         }
 
-        public Cuota Map(string linea)
+        public LiquidacionCuotaModeradora Map(string linea)
         {
-            var p = new Cuota();
+            var p = new LiquidacionCuotaModeradora();
             p.Numero = int.Parse(linea.Split(',')[0]);
             p.IdPaciente = int.Parse(linea.Split(',')[1]);
             p.Nombre = linea.Split(',')[2];

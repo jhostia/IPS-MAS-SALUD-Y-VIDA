@@ -11,13 +11,13 @@ namespace Logica
     public class ServicioPaciente
     {
         DatosPasiente datosPasiente = null;
-        private List<Cuota> listaP = null;
+        private List<LiquidacionCuotaModeradora> listaP = null;
         public ServicioPaciente()
         {
             datosPasiente = new DatosPasiente();
             listaP = datosPasiente.MostrarTodos();
         }
-        public String Guardar(Cuota cuota)
+        public String Guardar(LiquidacionCuotaModeradora cuota)
         { 
             if (cuota == null)
             {
@@ -26,7 +26,7 @@ namespace Logica
             var msg = (datosPasiente.Guardar(cuota));
             return msg;
         }
-        public List<Cuota> ConsultarTodos()
+        public List<LiquidacionCuotaModeradora> ConsultarTodos()
         {
             return listaP;
         }

@@ -185,5 +185,46 @@ namespace Datos
 
             return null; // No se encontró una liquidación con ese número
         }
+
+        //Metodo para obtener las liquidaciones por su año y mes 
+        public List<LiquidacionCuotaModeradora> ObtenerLiquidacionesPorMesYAnio(int mes, int anio)
+        {
+            List<LiquidacionCuotaModeradora> liquidacionesFiltradas = new List<LiquidacionCuotaModeradora>();
+
+            if (File.Exists(archivoLiquidaciones))
+            {
+                string[] lineas = File.ReadAllLines(archivoLiquidaciones);
+                foreach (string linea in lineas)
+                {
+                    string[] campos = linea.Split(';');
+
+                    if (campos.Length == 9)
+                    {
+                        DateTime fechaLiquidacion;
+                        if (DateTime.TryParseExact(campos[1], "dd/MM/yyyy HH:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaLiquidacion))
+                        {
+                            if (fechaLiquidacion.Year == anio && fechaLiquidacion.Month == mes)
+                            {
+                                LiquidacionCuotaModeradora liquidacion = new LiquidacionCuotaModeradora
+                                {
+                                    NumeroLiquidacion = int.Parse(campos[0]),
+                                    FechaLiquidacion = fechaLiquidacion,
+                                    IdentificacionPaciente = campos[2],
+                                    TipoAfiliacion = campos[3],
+                                    SalarioDevengado = decimal.Parse(campos[4]),
+                                    ValorServicioHospitalizacion = decimal.Parse(campos[5]),
+                                    CuotaModeradora = decimal.Parse(campos[6]),
+                                    Tarifa = decimal.Parse(campos[7]),
+                                    TopeMaximo = decimal.Parse(campos[8])
+                                };
+
+                                liquidacionesFiltradas.Add(liquidacion);
+                            }
+                        }
+                    }
+                }
+            }
+            return liquidacionesFiltradas;
+        }
     }
 }

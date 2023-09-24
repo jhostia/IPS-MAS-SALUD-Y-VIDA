@@ -10,11 +10,11 @@ namespace Logica
 {
     public class ServicioPaciente
     {
-        DatosPasiente datosPasiente = null;
+        LiquidacionCuotaModeradoraRepository datosPasiente = null;
         private List<LiquidacionCuotaModeradora> listaP = null;
         public ServicioPaciente()
         {
-            datosPasiente = new DatosPasiente();
+            datosPasiente = new LiquidacionCuotaModeradoraRepository();
             listaP = datosPasiente.MostrarTodos();
         }
         public String Guardar(LiquidacionCuotaModeradora cuota)

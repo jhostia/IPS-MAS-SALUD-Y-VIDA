@@ -10,7 +10,7 @@ namespace Presentacion
 {
     internal class PasienteGUI
     {
-        private ServicioPaciente servicioPaciente = new ServicioPaciente();
+        private LiquidacionCuotaModeradoraService servicioPaciente = new LiquidacionCuotaModeradoraService();
 
         public void Menu()
         {

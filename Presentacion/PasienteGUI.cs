@@ -64,7 +64,7 @@ namespace Presentacion
             Console.WriteLine(servicioPaciente.Guardar(cuota));
             Console.ReadKey();
         }
-        private void MostrarPasiente()
+        private static void MostrarPasiente()
         {
             Console.Clear();
             Console.SetCursorPosition(40, 2); Console.Write("Listado General de los pasientes");

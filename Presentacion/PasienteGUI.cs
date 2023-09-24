@@ -18,13 +18,17 @@ namespace Presentacion
             do
             {
                 Console.Clear();
-                Console.SetCursorPosition(15, 2); Console.WriteLine("########### MENU PRINCIPAL ############");
+                Console.SetCursorPosition(15, 3); Console.WriteLine("########### MENU PRINCIPAL ############");
                 Console.SetCursorPosition(10, 5); Console.WriteLine("1. Agregar pasiente");
                 Console.SetCursorPosition(10, 7); Console.WriteLine("2. Mostrar todas los pasientes registradas");
                 Console.SetCursorPosition(10, 9); Console.WriteLine("3. Actualizar pasiente");
-                Console.SetCursorPosition(10, 11); Console.WriteLine("4. Eliminar pesiente por cedula");
-                Console.SetCursorPosition(10, 13); Console.WriteLine("5. Salir del programa");
-                Console.SetCursorPosition(15, 15); Console.WriteLine("#########Seleccione una opcion#########");
+                Console.SetCursorPosition(10, 11);Console.WriteLine("4. Eliminar pesiente por cedula");
+                Console.SetCursorPosition(10, 13); Console.WriteLine("5. Filtar por tipo de afiliaciono");
+                Console.SetCursorPosition(10, 15); Console.WriteLine("6. Filtar por nombre");
+                Console.SetCursorPosition(10, 17); Console.WriteLine("7. Consultar total cuotas moderadoras liquidadas y valor total liquidado\r\n       " +
+                    "      por afiliación régimen subsidiado y régimen contributivo");
+                Console.SetCursorPosition(10, 20); Console.WriteLine("8. Salir del programa");
+                Console.SetCursorPosition(10, 22); Console.WriteLine("#########Seleccione una opcion#########");
 
                 op = int.Parse(Console.ReadLine());
 
@@ -40,10 +44,8 @@ namespace Presentacion
                         break;
                     case 4:
                         break;
-                    case 5:
-                        break;
                 }
-            } while (op != 5);
+            } while (op != 8);
         }
         public void AgregarPasiente()
         {

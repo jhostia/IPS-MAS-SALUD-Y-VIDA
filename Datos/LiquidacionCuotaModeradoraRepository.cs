@@ -113,5 +113,38 @@ namespace Datos
                 return false; // El archivo de liquidaciones no existe
             }
         }
+
+        // Método para actualizar una liquidación
+        public bool ActualizarLiquidacion(LiquidacionCuotaModeradora liquidacion)
+        {
+            bool liquidacionEncontrada = false;
+            string[] lineas = File.ReadAllLines(archivoLiquidaciones);
+
+            for (int i = 0; i < lineas.Length; i++)
+            {
+                string linea = lineas[i];
+                string[] campos = linea.Split(';');
+
+                if (campos.Length == 9 && int.Parse(campos[0]) == liquidacion.NumeroLiquidacion)
+                {
+                    // Si se encuentra la liquidación, se actualiza la línea
+                    lineas[i] = $"{liquidacion.NumeroLiquidacion};{liquidacion.FechaLiquidacion};{liquidacion.IdentificacionPaciente};{liquidacion.TipoAfiliacion};{liquidacion.SalarioDevengado};{liquidacion.ValorServicioHospitalizacion};{liquidacion.CuotaModeradora};{liquidacion.Tarifa};{liquidacion.TopeMaximo}";
+                    liquidacionEncontrada = true;
+                    break; // Terminamos el bucle, ya que encontramos y actualizamos la liquidación
+                }
+            }
+
+            if (liquidacionEncontrada)
+            {
+                // Sobreescribe el archivo con la línea actualizada
+                File.WriteAllLines(archivoLiquidaciones, lineas);
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("La liquidación con el número especificado no existe.");
+                return false; // No se encontró la liquidación
+            }
+        }
     }
 }

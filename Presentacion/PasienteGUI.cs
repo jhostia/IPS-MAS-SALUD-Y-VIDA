@@ -49,18 +49,29 @@ namespace Presentacion
         {
             Console.Clear();
             Console.WriteLine("Ingrese el numero de liquidacion del pasiente");
-            long numero = long.Parse(Console.ReadLine());
+            int numero = int.Parse(Console.ReadLine());
             Console.WriteLine("Digitela identificacion del pasiente");
-            long idPaciente = long.Parse(Console.ReadLine());
+            int idPaciente = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite el nombre del paciente");
+            string nombre = Console.ReadLine();
+            string Nombre = nombre.ToUpper();
             Console.WriteLine("Digite el tipo de afiliacion que tiene la persona");
             Console.WriteLine("Digite 1 si es SUBSIDIADO o Digite 2 si es CONTRIBUTIVO");
-            int tipo = int.Parse(Console.ReadLine());
+            string tipo = Console.ReadLine();
+            if (tipo == "1")
+            {
+                tipo = "Subsidiado";
+            }
+            else
+            {
+                tipo = "Contributivo";
+            }
             Console.WriteLine("Digite el  salario devengado por el paciente ");
             double salario = double.Parse(Console.ReadLine());
             Console.WriteLine("Digite el  valor del servicio de hospitalización");
             double valorServicio = double.Parse(Console.ReadLine());
 
-            Cuota cuota = new Cuota(numero, idPaciente, tipo, salario, valorServicio);
+            Cuota cuota = new Cuota(numero, idPaciente, nombre, tipo, salario, valorServicio);
             Console.WriteLine(servicioPaciente.Guardar(cuota));
             Console.ReadKey();
         }
@@ -68,20 +79,26 @@ namespace Presentacion
         {
             Console.Clear();
             Console.SetCursorPosition(40, 2); Console.Write("Listado General de los pasientes");
-            Console.SetCursorPosition(1, 4); Console.Write("Numero de liquidacion/");
-            Console.SetCursorPosition(24, 4); Console.Write("Id del pasiente/");
-            Console.SetCursorPosition(41, 4); Console.Write("Tipo de afilacion/");
-            Console.SetCursorPosition(60, 4); Console.Write("Salario devengado paciente/");
-            Console.SetCursorPosition(88, 4); Console.Write("Valor servicio hospitalizacion");
+            Console.SetCursorPosition(2, 4);  Console.Write("N_liquidacion");
+            Console.SetCursorPosition(18, 4); Console.Write("Cedula");
+            Console.SetCursorPosition(29, 4); Console.WriteLine("Nombre");
+            Console.SetCursorPosition(38, 4); Console.Write("Afilacion");
+            Console.SetCursorPosition(52, 4); Console.Write("Salario");
+            Console.SetCursorPosition(62, 4); Console.Write("Valor Atencion");
+            Console.SetCursorPosition(78, 4); Console.WriteLine("Cuota");
+            Console.SetCursorPosition(88, 4); Console.WriteLine("Tarifa");
             int posicion = 2;
 
                 foreach (var item in servicioPaciente.ConsultarTodos())
                 {
-                Console.SetCursorPosition(10, 4 + posicion); Console.Write(item.Numero);
-                Console.SetCursorPosition(28, 4 + posicion); Console.Write(item.IdPaciente);
-                Console.SetCursorPosition(49, 4 + posicion); Console.Write(item.Tipo);
-                Console.SetCursorPosition(68, 4 + posicion); Console.Write(item.Salario);
-                Console.SetCursorPosition(100, 4 + posicion); Console.Write(item.ValorServicio);
+                Console.SetCursorPosition(7, 4 + posicion); Console.Write(item.Numero);
+                Console.SetCursorPosition(18, 4 + posicion); Console.Write(item.IdPaciente);
+                Console.SetCursorPosition(29, 4 + posicion); Console.WriteLine(item.Nombre);
+                Console.SetCursorPosition(37, 4 + posicion); Console.Write(item.Tipo);
+                Console.SetCursorPosition(52, 4 + posicion); Console.Write(item.Salario);
+                Console.SetCursorPosition(65, 4 + posicion); Console.Write(item.ValorServicio);
+                Console.SetCursorPosition(78, 4 + posicion); Console.WriteLine(item.VCuota());
+                Console.SetCursorPosition(90, 4 + posicion); Console.WriteLine(item.VTarifa());
                 posicion++;
             }
             Console.ReadKey();

@@ -10,6 +10,7 @@ namespace Presentacion
     {
         static void Main(string[] args)
         {
+
             PasienteGUI pasienteGUI = new PasienteGUI();
             pasienteGUI.Menu();
         }

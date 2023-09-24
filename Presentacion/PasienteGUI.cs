@@ -64,7 +64,7 @@ namespace Presentacion
             Console.WriteLine(servicioPaciente.Guardar(cuota));
             Console.ReadKey();
         }
-        private static void MostrarPasiente()
+        private void MostrarPasiente()
         {
             Console.Clear();
             Console.SetCursorPosition(40, 2); Console.Write("Listado General de los pasientes");
@@ -77,11 +77,11 @@ namespace Presentacion
 
                 foreach (var item in servicioPaciente.ConsultarTodos())
                 {
-                Console.SetCursorPosition(15, 4 + posicion); Console.Write(item.Numero);
-                Console.SetCursorPosition(29, 4 + posicion); Console.Write(item.IdPaciente);
-                Console.SetCursorPosition(34, 4 + posicion); Console.Write(item.Tipo);
-                Console.SetCursorPosition(42, 4 + posicion); Console.Write(item.Salario);
-                Console.SetCursorPosition(48, 4 + posicion); Console.Write(item.ValorServicio);
+                Console.SetCursorPosition(10, 4 + posicion); Console.Write(item.Numero);
+                Console.SetCursorPosition(28, 4 + posicion); Console.Write(item.IdPaciente);
+                Console.SetCursorPosition(49, 4 + posicion); Console.Write(item.Tipo);
+                Console.SetCursorPosition(68, 4 + posicion); Console.Write(item.Salario);
+                Console.SetCursorPosition(100, 4 + posicion); Console.Write(item.ValorServicio);
                 posicion++;
             }
             Console.ReadKey();

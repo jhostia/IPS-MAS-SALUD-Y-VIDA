@@ -42,11 +42,11 @@ namespace Datos
         public Cuota Map(string linea)
         {
             var p = new Cuota();
-            p.Numero = long.Parse(linea.Split(';')[0]);
-            p.IdPaciente = long.Parse(linea.Split(';')[1]);
-            p.Tipo = int.Parse(linea.Split(';')[2]);
-            p.Salario = double.Parse(linea.Split(';')[3]);
-            p.ValorServicio = double.Parse(linea.Split(';')[4]);
+            p.Numero = long.Parse(linea.Split(',')[0]);
+            p.IdPaciente = long.Parse(linea.Split(',')[1]);
+            p.Tipo = int.Parse(linea.Split(',')[2]);
+            p.Salario = double.Parse(linea.Split(',')[3]);
+            p.ValorServicio = double.Parse(linea.Split(',')[4]);
             return p;
         }
     }

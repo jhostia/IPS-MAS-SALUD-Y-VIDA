@@ -8,11 +8,9 @@ namespace Entidades
 {
     public class Cuota
     {
-
         public Cuota()
         {
         }
-
         public Cuota(long numero, long idPaciente, int tipo, double salario, double valorServicio)
         {
             Numero = numero;

@@ -13,7 +13,7 @@ namespace Entidades
         {
         }
 
-        public Cuota(long numero, long idPaciente, string tipo, double salario, double valorServicio)
+        public Cuota(long numero, long idPaciente, int tipo, double salario, double valorServicio)
         {
             Numero = numero;
             IdPaciente = idPaciente;
@@ -21,22 +21,17 @@ namespace Entidades
             Salario = salario;
             ValorServicio = valorServicio;
         }
-
-        public void tipoAfiliacion(string tipo)
-        {
-            Tipo = tipo;
-        }
-
-
-
+        //public void tipoAfiliacion(string tipo)
+        //{
+        //    Tipo = tipo;
+        //}
         public override string ToString()
         {
             return $"{Numero},{IdPaciente},{Tipo},{Salario},{ValorServicio}";
         }
-
         public long Numero { get; set; }
         public long IdPaciente { get; set; }
-        public string Tipo { get; set; }    
+        public int Tipo { get; set; }    
         public double Salario { get; set; }
         public double ValorServicio { get; set; }
     }

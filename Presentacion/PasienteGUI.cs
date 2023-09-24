@@ -10,7 +10,7 @@ namespace Presentacion
 {
     internal class PasienteGUI
     {
-        private ServicioPasiente servicioPasiente = new ServicioPasiente();
+        private ServicioPaciente servicioPaciente = new ServicioPaciente();
 
         public void Menu()
         {
@@ -53,29 +53,30 @@ namespace Presentacion
             Console.WriteLine("Digitela identificacion del pasiente");
             long idPaciente = long.Parse(Console.ReadLine());
             Console.WriteLine("Digite el tipo de afiliacion que tiene la persona");
-            string tipo = Console.ReadLine();
-            Console.WriteLine("Digite el salario del pasiente");
+            Console.WriteLine("Digite 1 si es SUBSIDIADO o Digite 2 si es CONTRIBUTIVO");
+            int tipo = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite el  salario devengado por el paciente ");
             double salario = double.Parse(Console.ReadLine());
-            Console.WriteLine("Digite el salario de la persona");
+            Console.WriteLine("Digite el  valor del servicio de hospitalización");
             double valorServicio = double.Parse(Console.ReadLine());
 
             Cuota cuota = new Cuota(numero, idPaciente, tipo, salario, valorServicio);
-            Console.WriteLine(servicioPasiente.Guardar(cuota));
+            Console.WriteLine(servicioPaciente.Guardar(cuota));
             Console.ReadKey();
         }
         private void MostrarPasiente()
         {
             Console.Clear();
-            Console.SetCursorPosition(15, 2); Console.Write("Listado General de los pasientes");
-            Console.SetCursorPosition(10, 4); Console.Write("Numero de liquidacion:");
-            Console.SetCursorPosition(28, 4); Console.Write("Identificacion del paciente:");
-            Console.SetCursorPosition(34, 4); Console.Write("Tipo de afilacion");
-            Console.SetCursorPosition(40, 4); Console.Write("Salario devengado por el paciente:");
-            Console.SetCursorPosition(46, 4); Console.Write("Valor del servicio de hospitalizacion:");
+            Console.SetCursorPosition(40, 2); Console.Write("Listado General de los pasientes");
+            Console.SetCursorPosition(1, 4); Console.Write("Numero de liquidacion/");
+            Console.SetCursorPosition(24, 4); Console.Write("Id del pasiente/");
+            Console.SetCursorPosition(41, 4); Console.Write("Tipo de afilacion/");
+            Console.SetCursorPosition(60, 4); Console.Write("Salario devengado paciente/");
+            Console.SetCursorPosition(88, 4); Console.Write("Valor servicio hospitalizacion");
             int posicion = 2;
-            foreach (var item in servicioPasiente.ConsultarTodos())
-            {
 
+                foreach (var item in servicioPaciente.ConsultarTodos())
+                {
                 Console.SetCursorPosition(15, 4 + posicion); Console.Write(item.Numero);
                 Console.SetCursorPosition(29, 4 + posicion); Console.Write(item.IdPaciente);
                 Console.SetCursorPosition(34, 4 + posicion); Console.Write(item.Tipo);

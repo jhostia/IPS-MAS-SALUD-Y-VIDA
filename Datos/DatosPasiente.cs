@@ -19,9 +19,10 @@ namespace Datos
             return $"La informacion de la persona identificada el en numero de cedula {cuota.IdPaciente} fue " +
                 $"guardado correctamente";
         }
-        public List<Cuota> ConsultarTodos()
+
+        public List<Cuota> MostrarTodos()
         {
-            var listaCuotas = new List<Cuota>();
+            List<Cuota> listaCuotas = new List<Cuota>();
             try
             {
                 StreamReader lector = new StreamReader(fileName);
@@ -43,7 +44,7 @@ namespace Datos
             var p = new Cuota();
             p.Numero = long.Parse(linea.Split(';')[0]);
             p.IdPaciente = long.Parse(linea.Split(';')[1]);
-            p.Tipo = linea.Split(';')[2];
+            p.Tipo = int.Parse(linea.Split(';')[2]);
             p.Salario = double.Parse(linea.Split(';')[3]);
             p.ValorServicio = double.Parse(linea.Split(';')[4]);
             return p;

@@ -246,5 +246,50 @@ namespace Presentacion
                 Console.WriteLine("Número de liquidación inválido.");
             }
         }
+        static void MostrarLiquidacionesPorMesYAnio(LiquidacionCuotaModeradoraService service)
+        {
+            Console.Clear();
+            Console.WriteLine("=== Consultar Liquidaciones por Mes y Año ===");
+            Console.Write("Ingrese el año (yyyy): ");
+            if (int.TryParse(Console.ReadLine(), out int anio))
+            {
+                Console.Write("Ingrese el mes (1-12): ");
+                if (int.TryParse(Console.ReadLine(), out int mes) && mes >= 1 && mes <= 12)
+                {
+                    var liquidacionesFiltradas = service.ObtenerLiquidacionesPorMesYAnio(mes, anio);
+
+                    if (liquidacionesFiltradas.Count == 0)
+                    {
+                        Console.WriteLine($"No hay liquidaciones registradas para el mes {mes} del año {anio}.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"=== Liquidaciones para el mes {mes} del año {anio} ===");
+                        Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("| Número de Liquidación | Identificación del Paciente | Tipo de Afiliación | Salario Devengado | Valor del Servicio de Hospitalización | Tarifa Aplicada | Valor Liquidado | Aplicó Tope Máximo | Valor de la Cuota Moderadora |");
+                        Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+                        foreach (var liquidacion in liquidacionesFiltradas)
+                        {
+                            string aplicoTopeMaximo = liquidacion.CuotaModeradora == liquidacion.TopeMaximo ? "Sí" : "No";
+
+                            Console.WriteLine($"| {liquidacion.NumeroLiquidacion,-21} | {liquidacion.IdentificacionPaciente,-30} | {liquidacion.TipoAfiliacion,-17} | {liquidacion.SalarioDevengado,-16:C} | {liquidacion.ValorServicioHospitalizacion,-44:C} | {liquidacion.Tarifa * 100,-15:N2}% | {liquidacion.CuotaModeradora,-15:C} | {aplicoTopeMaximo,-16} | {liquidacion.TopeMaximo,-27:C} |");
+                        }
+
+                        Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Mes inválido. Debe ser un valor entre 1 y 12.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Año inválido. Ingrese un año en formato yyyy.");
+            }
+
+
+        }
     }
 }

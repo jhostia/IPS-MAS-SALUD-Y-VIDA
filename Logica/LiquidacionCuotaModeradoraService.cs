@@ -112,6 +112,11 @@ namespace Logica
 
             return totalLiquidadoPorTipoAfiliacion;
         }
+        public bool EliminarLiquidacionPorNumero(int numeroLiquidacion)
+        {
+            // Llama al método del repositorio para eliminar la liquidación
+            return repository.EliminarLiquidacion(numeroLiquidacion);
+        }
 
         public bool ModificarValorServicioYRecalcularCuotaModeradora(int numeroLiquidacion, decimal nuevoValorServicioHospitalizacion)
         {

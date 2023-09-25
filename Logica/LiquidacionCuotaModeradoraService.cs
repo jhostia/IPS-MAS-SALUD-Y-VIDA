@@ -91,5 +91,63 @@ namespace Logica
 
             return totalPorTipoAfiliacion;
         }
+        public Dictionary<string, decimal> ObtenerTotalCuotasModeradorasPorTipoAfiliacion()
+        {
+            var liquidaciones = ObtenerTodasLasLiquidaciones();
+
+            var totalCuotasPorTipoAfiliacion = liquidaciones
+                .GroupBy(l => l.TipoAfiliacion, StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(g => g.Key, g => g.Sum(l => l.CuotaModeradora));
+
+            return totalCuotasPorTipoAfiliacion;
+        }
+
+        public Dictionary<string, decimal> ObtenerTotalLiquidadoPorTipoAfiliacion()
+        {
+            var liquidaciones = ObtenerTodasLasLiquidaciones();
+
+            var totalLiquidadoPorTipoAfiliacion = liquidaciones
+                .GroupBy(l => l.TipoAfiliacion, StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(g => g.Key, g => g.Sum(l => l.CuotaModeradora + l.ValorServicioHospitalizacion));
+
+            return totalLiquidadoPorTipoAfiliacion;
+        }
+
+        public bool ModificarValorServicioYRecalcularCuotaModeradora(int numeroLiquidacion, decimal nuevoValorServicioHospitalizacion)
+        {
+            var liquidacion = ObtenerLiquidacionPorNumero(numeroLiquidacion);
+
+            if (liquidacion != null)
+            {
+                // Actualiza el valor del servicio de hospitalización
+                liquidacion.ValorServicioHospitalizacion = nuevoValorServicioHospitalizacion;
+
+                // Recalcula la cuota moderadora
+                liquidacion = CalcularCuotaModeradora(liquidacion);
+
+                // Actualiza la liquidación en el repositorio
+                repository.ActualizarLiquidacion(liquidacion);
+
+                return true;
+            }
+
+            return false; // No se encontró ninguna liquidación con el número proporcionado
+        }
+
+        public LiquidacionCuotaModeradora ObtenerLiquidacionPorNumero(int numeroLiquidacion)
+        {
+            // Llama al repositorio para obtener la liquidación por su número
+            return repository.ObtenerLiquidacionPorNumero(numeroLiquidacion);
+        }
+
+        public List<LiquidacionCuotaModeradora> ObtenerLiquidacionesPorMesYAnio(int mes, int anio)
+        {
+            var liquidaciones = ObtenerTodasLasLiquidaciones();
+
+            return liquidaciones.Where(liquidacion =>
+                liquidacion.FechaLiquidacion.Month == mes && liquidacion.FechaLiquidacion.Year == anio)
+            .ToList();
+        }
+
     }
 }

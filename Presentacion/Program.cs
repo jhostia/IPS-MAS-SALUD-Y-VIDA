@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Entidades;
 using Logica;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,125 @@ namespace Presentacion
                 Console.WriteLine("8. Salir");
                 Console.WriteLine("");
                 Console.Write("Seleccione una opción: ");
+
+                if (int.TryParse(Console.ReadLine(), out int opcion))
+                {
+                    switch (opcion)
+                    {
+                        case 1:
+                            Console.Clear();
+                            Console.WriteLine("=== Registro de Liquidación ===");
+                            RegistrarLiquidacion(service);
+                            break;
+                        case 2:
+                            MostrarTodasLasLiquidaciones(service);
+                            break;
+                        case 3:
+                            MostrarTotalLiquidacionesPorTipoAfiliacion(service);
+                            break;
+                        case 4:
+                            MostrarTotalesPorTipoAfiliacion(service);
+                            break;
+                        case 5:
+                            MostrarLiquidacionesPorMesYAnio(service);
+                            break;
+                        case 6:
+                            Console.Clear();
+                            Console.WriteLine("=== Eliminar Liquidación por Número ===");
+                            EliminarLiquidacion(service);
+                            break;
+                        case 7:
+                            Console.Clear();
+                            Console.WriteLine("=== Modificar Valor del Servicio y Recalcular Cuota Moderadora ===");
+                            ModificarValorServicioYRecalcularCuota(service);
+                            break;
+                        case 8:
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida. Intente de nuevo.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Opción no válida. Intente de nuevo.");
+                }
+
+                // Pausa para que el usuario pueda ver los resultados antes de regresar al menú principal
+                Console.WriteLine("Presione cualquier tecla para continuar...");
+                Console.ReadKey();
             }
+        }
+        static void RegistrarLiquidacion(LiquidacionCuotaModeradoraService service)
+        {
+            Console.Clear();
+            Console.WriteLine("=== Registro de Liquidación ===");
+
+            // Solicitar datos de la liquidación al usuario
+            Console.Write("Número de Liquidación: ");
+            int numeroLiquidacion = int.Parse(Console.ReadLine());
+
+            // Obtener automáticamente la fecha y hora actual
+            DateTime fechaLiquidacion = DateTime.Now;
+
+            Console.Write("Identificación del Paciente: ");
+            string identificacionPaciente = Console.ReadLine();
+
+            Console.Write("Tipo de Afiliación (Contributivo o Subsidiado): ");
+            string tipoAfiliacion = Console.ReadLine();
+
+            Console.Write("Salario Devengado del Paciente: ");
+            decimal salarioDevengado = decimal.Parse(Console.ReadLine());
+
+            Console.Write("Valor del Servicio de Hospitalización Prestado: ");
+            decimal valorServicioHospitalizacion = decimal.Parse(Console.ReadLine());
+
+            // Crear una instancia de LiquidacionCuotaModeradora con los datos ingresados
+            var liquidacion = new LiquidacionCuotaModeradora
+            {
+                NumeroLiquidacion = numeroLiquidacion,
+                FechaLiquidacion = fechaLiquidacion, // Asignar la fecha y hora actual
+                IdentificacionPaciente = identificacionPaciente,
+                TipoAfiliacion = tipoAfiliacion,
+                SalarioDevengado = salarioDevengado,
+                ValorServicioHospitalizacion = valorServicioHospitalizacion
+            };
+
+            // Calcular la cuota moderadora y asignar la tarifa y el tope máximo
+            liquidacion = service.CalcularCuotaModeradora(liquidacion);
+
+            // Registrar la liquidación en el repositorio
+            service.RegistrarLiquidacion(liquidacion);
+
+            Console.WriteLine("Liquidación registrada exitosamente.");
+            Console.Clear();
+        }
+        static void MostrarTodasLasLiquidaciones(LiquidacionCuotaModeradoraService service)
+        {
+            Console.Clear();
+            Console.WriteLine("=== Todas las Liquidaciones ===");
+            var liquidaciones = service.ObtenerTodasLasLiquidaciones();
+
+            if (liquidaciones.Count == 0)
+            {
+                Console.WriteLine("No hay liquidaciones registradas.");
+            }
+            else
+            {
+                Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                Console.WriteLine("| Número de Liquidación | Fecha de Liquidación      | Identificación del Paciente | Tipo de Afiliación | Salario Devengado | Valor del Servicio de Hospitalización | Tarifa Aplicada | Valor Liquidado | Aplicó Tope Máximo | Valor de la Cuota Moderadora |");
+                Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+                foreach (var liquidacion in liquidaciones)
+                {
+                    string aplicoTopeMaximo = liquidacion.CuotaModeradora == liquidacion.TopeMaximo ? "Sí" : "No";
+
+                    Console.WriteLine($"| {liquidacion.NumeroLiquidacion,-21} | {liquidacion.FechaLiquidacion.ToString("dd/MM/yyyy HH:mm:ss tt"),-24} | {liquidacion.IdentificacionPaciente,-30} | {liquidacion.TipoAfiliacion,-17} | {liquidacion.SalarioDevengado,-16:C} | {liquidacion.ValorServicioHospitalizacion,-44:C} | {liquidacion.Tarifa * 100,-15:N2}% | {liquidacion.CuotaModeradora,-15:C} | {aplicoTopeMaximo,-16} | {liquidacion.TopeMaximo,-27:C} |");
+                }
+
+                Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            }
+        }
     }
 }

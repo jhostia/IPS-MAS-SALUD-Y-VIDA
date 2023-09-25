@@ -150,5 +150,40 @@ namespace Presentacion
                 Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             }
         }
+        static void MostrarTotalLiquidacionesPorTipoAfiliacion(LiquidacionCuotaModeradoraService service)
+        {
+            Console.Clear();
+            Console.WriteLine("=== Total de Liquidaciones por Tipo de Afiliación ===");
+            var totalPorTipoAfiliacion = service.ObtenerTotalLiquidacionesPorTipoAfiliacion();
+
+            foreach (var kvp in totalPorTipoAfiliacion)
+            {
+                Console.WriteLine($"Tipo de Afiliación: {kvp.Key}, Total de Liquidaciones: {kvp.Value}");
+            }
+
+
+        }
+
+        static void MostrarTotalesPorTipoAfiliacion(LiquidacionCuotaModeradoraService service)
+        {
+            Console.Clear();
+            Console.WriteLine("=== Totales por Tipo de Afiliación ===");
+
+            var totalCuotasPorTipo = service.ObtenerTotalCuotasModeradorasPorTipoAfiliacion();
+            var totalLiquidadoPorTipo = service.ObtenerTotalLiquidadoPorTipoAfiliacion();
+
+            foreach (var tipoAfiliacion in totalCuotasPorTipo.Keys)
+            {
+                decimal totalCuotas = totalCuotasPorTipo[tipoAfiliacion];
+                decimal totalLiquidado = totalLiquidadoPorTipo[tipoAfiliacion];
+
+                Console.WriteLine($"Tipo de Afiliación: {tipoAfiliacion}");
+                Console.WriteLine($"Total de Cuotas Moderadoras: {totalCuotas:C}");
+                Console.WriteLine($"Total Liquidado: {totalLiquidado:C}");
+                Console.WriteLine();
+            }
+
+
+        }
     }
 }

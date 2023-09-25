@@ -182,8 +182,69 @@ namespace Presentacion
                 Console.WriteLine($"Total Liquidado: {totalLiquidado:C}");
                 Console.WriteLine();
             }
+        }
+        static void EliminarLiquidacion(LiquidacionCuotaModeradoraService service)
+        {
+            Console.Clear();
+            Console.WriteLine("=== Eliminar Liquidación por Número ===");
+            Console.Write("Ingrese el número de liquidación que desea eliminar: ");
+            if (int.TryParse(Console.ReadLine(), out int numeroLiquidacion))
+            {
+                bool eliminada = service.EliminarLiquidacionPorNumero(numeroLiquidacion);
+                if (eliminada)
+                {
+                    Console.WriteLine($"La liquidación con número {numeroLiquidacion} ha sido eliminada exitosamente.");
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró ninguna liquidación con el número {numeroLiquidacion}.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Número de liquidación inválido.");
+            }
 
+        }
 
+        static void ModificarValorServicioYRecalcularCuota(LiquidacionCuotaModeradoraService service)
+        {
+            Console.Clear();
+            Console.WriteLine("=== Modificar Valor del Servicio y Recalcular Cuota Moderadora ===");
+            Console.Write("Ingrese el número de liquidación que desea modificar: ");
+            if (int.TryParse(Console.ReadLine(), out int numeroLiquidacion))
+            {
+                // Verificar si la liquidación existe antes de continuar
+                var liquidacionExistente = service.ObtenerLiquidacionPorNumero(numeroLiquidacion);
+                if (liquidacionExistente != null)
+                {
+                    Console.Write("Ingrese el nuevo valor del servicio de hospitalización: ");
+                    if (decimal.TryParse(Console.ReadLine(), out decimal nuevoValorServicio))
+                    {
+                        bool modificado = service.ModificarValorServicioYRecalcularCuotaModeradora(numeroLiquidacion, nuevoValorServicio);
+                        if (modificado)
+                        {
+                            Console.WriteLine($"La liquidación con número {numeroLiquidacion} ha sido modificada exitosamente.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"No se encontró ninguna liquidación con el número {numeroLiquidacion}.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Valor del servicio inválido.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró ninguna liquidación con el número {numeroLiquidacion}.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Número de liquidación inválido.");
+            }
         }
     }
 }
